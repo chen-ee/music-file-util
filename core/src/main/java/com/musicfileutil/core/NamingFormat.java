@@ -13,20 +13,35 @@ public enum NamingFormat {
     /**
      * 歌曲名-歌手名
      */
-    SONG_ART,
+    SONG_ART("SONG_ART", 0),
     /**
      * 歌手名-歌曲名
      */
-    ART_SONG;
+    ART_SONG("ART_SONG", 1);
 
-    public static NamingFormat getByString(String code) {
-        // XXX 优化if-else代码结构
-        if (StringUtils.equalsIgnoreCase(code, "SONG_ARG")) {
-            return SONG_ART;
-        } else if (StringUtils.equalsIgnoreCase(code, "ART_SONG")) {
-            return SONG_ART;
-        } else {
-            return null;
+    private final String name;
+    private final Integer code;
+
+    NamingFormat(String name, Integer code) {
+        this.name = name;
+        this.code = code;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Integer getCode() {
+        return code;
+    }
+
+    public static NamingFormat getByName(String name) throws UnknownNamingFormatException {
+        NamingFormat result;
+        try {
+            result = valueOf(StringUtils.upperCase(name));
+        } catch (IllegalArgumentException e) {
+            throw new UnknownNamingFormatException();
         }
+        return result;
     }
 }
