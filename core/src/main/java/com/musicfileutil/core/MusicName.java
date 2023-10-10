@@ -7,7 +7,7 @@ package com.musicfileutil.core;
  * @date 2023-09-22 23:05
  * @since 1.0
  */
-public interface FileName {
+public interface MusicName {
     /**
      * 复制文件名到剪贴板
      *
@@ -25,5 +25,5 @@ public interface FileName {
      * @return 新文件名
      * @throws UnknownNamingFormatException 若名称解析异常
      */
-    String rename(String oldName, NamingFormat oldFormat, NamingFormat newFormat) throws UnknownNamingFormatException;
+    String rename(String oldName, NamingFormat oldFormat, NamingFormat newFormat) throws UnknownNamingFormatException, IllegalNameException;
 }

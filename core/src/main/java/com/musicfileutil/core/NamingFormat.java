@@ -19,6 +19,11 @@ public enum NamingFormat {
      */
     ART_SONG("ART_SONG", 1);
 
+    /**
+     * 歌曲名和歌手名的分隔符：{@value}
+     */
+    public static final String SEPARATOR = " - ";
+
     private final String name;
     private final Integer code;
 
