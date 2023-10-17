@@ -1,6 +1,9 @@
 package com.musicfileutil.core;
 
-import org.apache.commons.lang3.StringUtils;
+import java.util.HashMap;
+import java.util.Map;
+
+import com.google.common.collect.ImmutableMap;
 
 /**
  * 音乐文件命名格式类型。
@@ -13,40 +16,59 @@ public enum NamingFormat {
     /**
      * 歌曲名-歌手名
      */
-    SONG_ART("SONG_ART", 0),
+    SONG_ART("NF001", "歌曲名-歌手名"),
     /**
      * 歌手名-歌曲名
      */
-    ART_SONG("ART_SONG", 1);
+    ART_SONG("NF002", "歌手名-歌曲名");
 
     /**
      * 歌曲名和歌手名的分隔符：{@value}
      */
     public static final String SEPARATOR = " - ";
 
+    private final String code;
     private final String name;
-    private final Integer code;
+    /* 表驱动法使用的 Map */
+    private static final Map<String, NamingFormat> codeMap;
+    private static final Map<String, NamingFormat> nameMap;
+    /* 表驱动法使用的 Map */
 
-    NamingFormat(String name, Integer code) {
-        this.name = name;
+    NamingFormat(String code, String name) {
         this.code = code;
+        this.name = name;
+    }
+
+    static {
+        Map<String, NamingFormat> codeMapTemp = new HashMap<>(values().length);
+        Map<String, NamingFormat> nameMapTemp = new HashMap<>(values().length);
+        for (NamingFormat namingFormat : values()) {
+            codeMapTemp.put(namingFormat.getCode(), namingFormat);
+            nameMapTemp.put(namingFormat.getName(), namingFormat);
+        }
+        codeMap = ImmutableMap.copyOf(codeMapTemp);
+        nameMap = ImmutableMap.copyOf(nameMapTemp);
+    }
+
+    public String getCode() {
+        return code;
     }
 
     public String getName() {
         return name;
     }
 
-    public Integer getCode() {
-        return code;
+    /**
+     * @return 指定命名格式代码的枚举，如果没找到则返回 {@code null}
+     */
+    public static NamingFormat getByCode(String code) {
+        return codeMap.get(code);
     }
 
-    public static NamingFormat getByName(String name) throws UnknownNamingFormatException {
-        NamingFormat result;
-        try {
-            result = valueOf(StringUtils.upperCase(name));
-        } catch (IllegalArgumentException e) {
-            throw new UnknownNamingFormatException();
-        }
-        return result;
+    /**
+     * @return 指定命名格式名称的枚举，如果没找到则返回 {@code null}
+     */
+    public static NamingFormat getByName(String name) {
+        return nameMap.get(name);
     }
 }

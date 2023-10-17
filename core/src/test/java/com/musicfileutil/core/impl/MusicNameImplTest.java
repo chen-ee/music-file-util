@@ -49,15 +49,15 @@ class MusicNameImplTest {
         String musicName = "demo - my.mp3";
         String expected = musicName;
         String actual = null;
-        musicNameHandler.copy2clipboard(musicName);
-        Clipboard clipboard = Toolkit.getDefaultToolkit()
-                                     .getSystemClipboard();
-        Transferable transferable = clipboard.getContents(null);
-        assertTrue(transferable.isDataFlavorSupported(DataFlavor.stringFlavor));
         try {
+            musicNameHandler.copy2clipboard(musicName);
+            Clipboard clipboard = Toolkit.getDefaultToolkit()
+                                         .getSystemClipboard();
+            Transferable transferable = clipboard.getContents(null);
+            assertTrue(transferable.isDataFlavorSupported(DataFlavor.stringFlavor));
             actual = (String) transferable.getTransferData(DataFlavor.stringFlavor);
         } catch (UnsupportedFlavorException | IOException e) {
-            e.printStackTrace();
+            logger.error("", e);
         }
         assertEquals(expected, actual);
     }
@@ -65,6 +65,7 @@ class MusicNameImplTest {
     static Collection<Arguments> test_rename_data() {
         return ImmutableList.of(
                 Arguments.of("初音ミク,八王子P - Blue Star.mp3", NamingFormat.ART_SONG, NamingFormat.SONG_ART, "Blue Star - 初音ミク,八王子P.mp3"),
+                Arguments.of("李健 - 贝加尔湖畔.mp3", NamingFormat.ART_SONG, NamingFormat.SONG_ART, "贝加尔湖畔 - 李健.mp3"),
                 Arguments.of("demo - my.mp3", NamingFormat.SONG_ART, NamingFormat.ART_SONG, "my - demo.mp3"),
                 Arguments.of("demo - my.png.mp3", NamingFormat.SONG_ART, NamingFormat.ART_SONG, "my.png - demo.mp3")
         );
