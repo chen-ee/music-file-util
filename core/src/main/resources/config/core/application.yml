@@ -1,3 +1,6 @@
 spring:
   application:
     name: musicFileUtil
+logging:
+  level:
+    root: INFO

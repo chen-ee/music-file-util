@@ -1,1 +1,5 @@
-
+#引入依赖模块的配置，其他配置在 config 文件夹里写
+spring:
+  config:
+    import:
+      - optional:classpath:config/core/application.yml
