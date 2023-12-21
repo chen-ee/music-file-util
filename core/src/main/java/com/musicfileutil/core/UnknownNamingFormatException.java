@@ -7,7 +7,7 @@ package com.musicfileutil.core;
  * @date 2023-06-17 16:37
  * @since 1.0
  */
-public class UnknownNamingFormatException extends Exception {
+public class UnknownNamingFormatException extends RuntimeException {
     private static final long serialVersionUID = -8871320019382834647L;
 
     public UnknownNamingFormatException() {

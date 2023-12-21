@@ -6,6 +6,7 @@ import java.awt.datatransfer.StringSelection;
 
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.stereotype.Component;
 
 import com.musicfileutil.core.IllegalNameException;
 import com.musicfileutil.core.MusicName;
@@ -19,9 +20,10 @@ import com.musicfileutil.core.UnknownNamingFormatException;
  * @date 2023-10-10 19:55
  * @since 1.0
  */
+@Component
 public class MusicNameImpl implements MusicName {
     @Override
-    public void copy2clipboard(String name) throws IllegalStateException {
+    public void copy2clipboard(String name) {
         try {
             Clipboard clipboard = Toolkit.getDefaultToolkit()
                                          .getSystemClipboard();
@@ -32,7 +34,7 @@ public class MusicNameImpl implements MusicName {
     }
 
     @Override
-    public String rename(String oldName, NamingFormat oldFormat, NamingFormat newFormat) throws UnknownNamingFormatException, IllegalNameException {
+    public String rename(String oldName, NamingFormat oldFormat, NamingFormat newFormat) {
         String songName;
         String artName;
         String extension = FilenameUtils.getExtension(oldName);

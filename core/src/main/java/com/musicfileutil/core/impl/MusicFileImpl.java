@@ -4,6 +4,7 @@ import java.io.File;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
 import com.musicfileutil.core.MusicFile;
 
@@ -14,6 +15,7 @@ import com.musicfileutil.core.MusicFile;
  * @date 2023-06-17 16:08
  * @since 1.0
  */
+@Component
 public class MusicFileImpl implements MusicFile {
     private static Logger logger = LoggerFactory.getLogger(MusicFileImpl.class);
 

@@ -7,7 +7,7 @@ package com.musicfileutil.core;
  * @date 2023-10-10 22:28
  * @since 1.0
  */
-public class IllegalNameException extends Exception {
+public class IllegalNameException extends RuntimeException {
     private static final long serialVersionUID = -6476407980410160480L;
 
     public IllegalNameException() {

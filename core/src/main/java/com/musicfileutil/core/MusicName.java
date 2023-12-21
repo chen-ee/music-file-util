@@ -14,7 +14,7 @@ public interface MusicName {
      * @param name 文件名称
      * @throws IllegalStateException 若剪贴板不可用
      */
-    void copy2clipboard(String name) throws IllegalStateException;
+    void copy2clipboard(String name);
 
     /**
      * 根据命名格式重命名文件
@@ -24,6 +24,7 @@ public interface MusicName {
      * @param newFormat 新命名格式
      * @return 新文件名
      * @throws UnknownNamingFormatException 若名称解析异常
+     * @throws IllegalNameException         若名称格式异常
      */
-    String rename(String oldName, NamingFormat oldFormat, NamingFormat newFormat) throws UnknownNamingFormatException, IllegalNameException;
+    String rename(String oldName, NamingFormat oldFormat, NamingFormat newFormat);
 }

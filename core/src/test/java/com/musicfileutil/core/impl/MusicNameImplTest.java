@@ -13,7 +13,7 @@ import java.util.Collection;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -31,20 +31,21 @@ import com.musicfileutil.core.UnknownNamingFormatException;
  * @since 1.0
  */
 class MusicNameImplTest {
-    private static Logger logger = LoggerFactory.getLogger(MusicNameImplTest.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(MusicNameImplTest.class);
 
-    private MusicNameImpl musicNameHandler = new MusicNameImpl();
+    private MusicNameImpl musicNameHandler;
 
     @BeforeEach
     void setUp() {
+        musicNameHandler = new MusicNameImpl();
     }
 
     @AfterEach
     void tearDown() {
+        musicNameHandler = null;
     }
 
-
-    @Test
+    @RepeatedTest(3)
     void test_copy2clipboard() {
         String musicName = "demo - my.mp3";
         String expected = musicName;
@@ -57,7 +58,7 @@ class MusicNameImplTest {
             assertTrue(transferable.isDataFlavorSupported(DataFlavor.stringFlavor));
             actual = (String) transferable.getTransferData(DataFlavor.stringFlavor);
         } catch (UnsupportedFlavorException | IOException e) {
-            logger.error("", e);
+            LOGGER.error("", e);
         }
         assertEquals(expected, actual);
     }
@@ -78,7 +79,7 @@ class MusicNameImplTest {
         try {
             actual = musicNameHandler.rename(oldName, oldFormat, newFormat);
         } catch (UnknownNamingFormatException | IllegalNameException e) {
-            logger.error("重命名失败！", e);
+            LOGGER.error("重命名失败！", e);
         }
         assertEquals(expected, actual);
     }
