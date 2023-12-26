@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.musicfileutil</groupId>
     <artifactId>music-file-util</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.2-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>music-file-util</name>
     <description>音乐文件工具</description>

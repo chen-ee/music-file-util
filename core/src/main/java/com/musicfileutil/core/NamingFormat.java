@@ -71,4 +71,9 @@ public enum NamingFormat {
     public static NamingFormat getByName(String name) {
         return nameMap.get(name);
     }
+
+    @Override
+    public String toString() {
+        return getName();
+    }
 }

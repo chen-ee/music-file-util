@@ -5,11 +5,10 @@
     <parent>
         <groupId>com.musicfileutil</groupId>
         <artifactId>music-file-util</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
-        <relativePath/>
+        <version>0.0.2-SNAPSHOT</version>
     </parent>
     <artifactId>core</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.2-SNAPSHOT</version>
     <name>core</name>
     <description>核心代码</description>
     <properties>

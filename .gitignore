@@ -47,7 +47,7 @@ target/
 *.ipr
 .mvn
 #mvnw*
-/out/
+out/
 
 ### NetBeans ###
 /nbproject/private/
