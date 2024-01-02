@@ -13,4 +13,9 @@ public class IllegalNameException extends RuntimeException {
     public IllegalNameException() {
         super("音乐名称非法！");
     }
+
+    public IllegalNameException(String msg) {
+        super(msg);
+    }
+    
 }

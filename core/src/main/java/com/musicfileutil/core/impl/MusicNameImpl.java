@@ -41,7 +41,7 @@ public class MusicNameImpl implements MusicName {
         String baseName = FilenameUtils.getBaseName(oldName);
         String[] songMessages = StringUtils.splitByWholeSeparator(baseName, NamingFormat.SEPARATOR);
         if (2 != songMessages.length) {
-            throw new IllegalNameException();
+            throw new IllegalNameException("音乐名格式不正确！");
         }
         switch (oldFormat) {
             case ART_SONG:

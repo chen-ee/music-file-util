@@ -22,6 +22,7 @@ public class UIWindow {
     private JTextArea messageConsole;
     private RenameInterface renameInterface;
     private FileInterface fileInterface;
+    private NameFormatSelectInterface nameFormatSelectInterface;
 
     @Autowired
     public void setRenameInterface(RenameInterface renameInterface) {
@@ -31,6 +32,11 @@ public class UIWindow {
     @Autowired
     public void setFileInterface(FileInterface fileInterface) {
         this.fileInterface = fileInterface;
+    }
+
+    @Autowired
+    public void setNameFormatSelectInterface(NameFormatSelectInterface nameFormatSelectInterface) {
+        this.nameFormatSelectInterface = nameFormatSelectInterface;
     }
 
     public JFrame getjFrame() {
@@ -52,6 +58,7 @@ public class UIWindow {
         Container contentPane = jFrame.getContentPane();
         contentPane.setLayout(new BorderLayout());
         contentPane.add(tabbedPane, BorderLayout.NORTH);
+        contentPane.add(nameFormatSelectInterface.getPanel(), BorderLayout.CENTER);
         contentPane.add(new JScrollPane(messageConsole), BorderLayout.SOUTH);
         jFrame.setMinimumSize(new Dimension(500, 400));
         jFrame.pack();
@@ -59,4 +66,5 @@ public class UIWindow {
         jFrame.setLocationRelativeTo(null);
         jFrame.setVisible(true);
     }
+
 }
